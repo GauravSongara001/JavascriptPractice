@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async Await (23 Jan)</title>
+</head>
+<body>
+    <div>
+        <h2 id="country"></h2>
+    </div>
+
+    <script>
+        var country = document.getElementById("country");
+
+        const fetchApi = async () => {
+            try {
+                let res = await fetch('https://datausa.io/api/data?drilldowns=Nation&measures=Population');
+                let data = await res.json();
+
+                console.log(data.data[0].Nation);
+
+                country.innerHTML = data.data[0].Nation;
+            } catch (error) {
+                console.log(error);
+            }   
+        }
+
+        fetchApi()
+    </script>
+</body>
+</html>
